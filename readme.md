@@ -155,8 +155,8 @@ var maker = function(value){
     var thatOtherThing = maker('I might not be the thing you wanted.');
     var shout = function(){console.log(theThingToBeMade.ownValue)};
     
-    newThing.ownValue -> evaluates to "I am a thing!"
-    newThing.shout() -> "I might not be the thing you wanted."
+    newThing.ownValue // evaluates to "I am a thing!"
+    newThing.shout() // "I might not be the thing you wanted."
 ```
 
 Did calling newThing.shout() have the same effect as you expected it to? If not lets step through what happens in this code:
@@ -193,8 +193,8 @@ When asking about how the keyword 'this' works you will usually find one of two 
             
     when you run thatOtherThing.shout(), this refers to thatOtherThing.
     
-    thatOtherThing.shout() -> "I might not be the thing you wanted."
-    newThing.shout() -> "I am a thing!"
+    thatOtherThing.shout() // "I might not be the thing you wanted."
+    newThing.shout() // "I am a thing!"
     
 Using the keyword this allows us to refer to the particular instance of the class that we intend to within the shared function. 
 
@@ -224,7 +224,7 @@ maker.stuffAllThingsShouldHave = {}
 maker.stuffAllThingsShouldHave.shout = function() {console.log(this.ownValue);};
 
 var newThing = maker(4)
-newThing.shout() -> "4"
+newThing.shout() // "4"
 ```
     
 Object.create not only creates the new object for us, but also sets up delegation to the prototype that is passed into it. This allows us to create and setup a chain in one line. The prototype in this example is maker.stuffAllThingsShouldHave and looks something like this.
