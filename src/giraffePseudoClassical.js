@@ -10,8 +10,8 @@ Giraffe.prototype.greet = function(){
 };
 
 Giraffe.prototype.eat = function(){
-  if(this.height > 2){
-    if(this.hunger > 0){
+  if (this.height > 2){
+    if (this.hunger > 0){
       this.hunger -= this.height;
     } else {
       console.log(this.name + " is not hungry.");

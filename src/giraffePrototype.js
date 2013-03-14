@@ -4,6 +4,7 @@ var giraffeMaker = function(name, height){
   var newGiraffe = Object.create(giraffeMaker.stuff);
   newGiraffe.name = name;
   newGiraffe.height = height;
+
   return newGiraffe;
 };
 
@@ -14,8 +15,8 @@ giraffeMaker.stuff.greet = function(){
 };
 
 giraffeMaker.stuff.eat = function(){
-  if(this.height > 2){
-    if(this.hunger > 0){
+  if (this.height > 2){
+    if (this.hunger > 0){
       this.hunger -= this.height;
     } else {
       console.log(this.name + " is not hungry.");

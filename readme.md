@@ -7,7 +7,7 @@ Welcome to giraffeMaker, a repo which explores different methods of constructing
 - Sharing of methods
 - Prototypal Inheritence
 - Pseudo-Classical Inheritence
-  
+
 
 The Story:
 -----------
@@ -43,12 +43,13 @@ In the repo you will find many examples of code which will have the same functio
 
 ```javascript
 var giraffeMaker = (name, height){
-    var giraffe = {}
+    var giraffe = {};
     giraffe.name = name;
     giraffe.height = height;
     giraffe.hunger = 10;
+
     return giraffe;
-}
+};
 ```
     
 This piece of code creates a new object and sets properties upon it, then returning the created object. The communal methods have not yet been shared.
@@ -71,10 +72,10 @@ var eat = function(){
         if(this.hunger > 0){
           this.hunger -= this.height;
         } else {
-          console.log(this.name + " is not hungry.")
+          console.log(this.name + " is not hungry.");
         }
   } else {
-    console.log(this.name + " too short to reach these trees.")
+    console.log(this.name + " too short to reach these trees.");
   }
 };
 ```
@@ -90,14 +91,15 @@ The Journey:
 The first step will be creating some sort of maker function. 
 
 ```javascript
-var theMaker = function(value){ 
-    var theThingToBeMade = {} 
-    theThingToBeMade.ownValue = value
+var theMaker = function(value){
+    var theThingToBeMade = {};
+    theThingToBeMade.ownValue = value;
     theThingToBeMade.shout = function(){
         console.log("I have my own Value! Let it be known as " + theThingToBeMade.ownValue + "!");
     };
+
     return theThingToBeMade;
-}
+};
 ```
 
 This function allows the user to create a thing. This thing will have its own value which is taken from the argument that is passed into the function. Each thing also has its own method which logs its value in a message to the console.
@@ -127,15 +129,16 @@ The code in the previous maker function creates a new method .shout() for each t
 
 ```javascript
 var theMaker = function(value){ 
-    var theThingToBeMade = {} 
-    theThingToBeMade.ownValue = value
+    var theThingToBeMade = {};
+    theThingToBeMade.ownValue = value;
     theThingToBeMade.shout = shout;
+
     return theThingToBeMade;
-}
+};
 
 var shout = function(){
     console.log("I have my own Value! Let it be known as " + this.ownValue + "!");
-}
+};
 ```
 
 In this snippet of code, we take the shout functionality out of the maker function, and share it across each instance of "thing". We did this by assigning a property on each thing, which points to the shout variable. Now any time you try to run .shout() on a thing, it will find var shout in the global scope, and run that code.
@@ -146,17 +149,18 @@ If we move the functionality outside of the maker function, we lose our previous
 ```javascript
 var maker = function(value){
     theThingToBeMade = {};
-    theThingToBeMade.ownValue = value 
+    theThingToBeMade.ownValue = value;
     //This assigns a property ownValue to the object. We can refer to it within the two brackets that wrap the maker             function.
     theThingToBeMade.shout = shout;
+
     return theThingToBeMade;
 };
     var newThing = maker('I am a thing!');
     var thatOtherThing = maker('I might not be the thing you wanted.');
     var shout = function(){console.log(theThingToBeMade.ownValue)};
-    
-    newThing.ownValue // evaluates to "I am a thing!"
-    newThing.shout() // "I might not be the thing you wanted."
+
+    newThing.ownValue; // evaluates to "I am a thing!"
+    newThing.shout(); // "I might not be the thing you wanted."
 ```
 
 Did calling newThing.shout() have the same effect as you expected it to? If not lets step through what happens in this code:
@@ -193,8 +197,8 @@ When asking about how the keyword 'this' works you will usually find one of two 
             
     when you run thatOtherThing.shout(), this refers to thatOtherThing.
     
-    thatOtherThing.shout() // "I might not be the thing you wanted."
-    newThing.shout() // "I am a thing!"
+    thatOtherThing.shout(); // "I might not be the thing you wanted."
+    newThing.shout(); // "I am a thing!"
     
 Using the keyword this allows us to refer to the particular instance of the class that we intend to within the shared function. 
 
@@ -217,14 +221,15 @@ A prototype allows you to share methods and properties among class members. How 
 var maker = function(value){
     var thingToBeMade = Object.create(maker.stuffAllThingsShouldHave);
     thingToBeMade.ownValue = value;
-    return thingToBeMade;
-}
 
-maker.stuffAllThingsShouldHave = {}
+    return thingToBeMade;
+};
+
+maker.stuffAllThingsShouldHave = {};
 maker.stuffAllThingsShouldHave.shout = function() {console.log(this.ownValue);};
 
-var newThing = maker(4)
-newThing.shout() // "4"
+var newThing = maker(4);
+newThing.shout(); // "4"
 ```
     
 Object.create not only creates the new object for us, but also sets up delegation to the prototype that is passed into it. This allows us to create and setup a chain in one line. The prototype in this example is maker.stuffAllThingsShouldHave and looks something like this.
@@ -267,7 +272,7 @@ You would use 'new' when creating another instance of the class. When creating o
         this.ownValue = value;
     }
     
-    Thing.prototype.shout = function(){console.log(this.ownValue)}
+    Thing.prototype.shout = function(){console.log(this.ownValue);};
     
     var newThing = new Thing(1);
     var otherThing = new Thing(100);
@@ -282,6 +287,7 @@ Here is how the interpreter sees the same function as it is run in constructor m
         var newThing = Object.create(Thing.prototype);
         this = newThing;
         this.ownValue = value;
+
         return this;
     }
     

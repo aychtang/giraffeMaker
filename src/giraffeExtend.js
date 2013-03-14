@@ -5,6 +5,7 @@ var giraffeMaker = function(name, height){
   newGiraffe.name = name;
   newGiraffe.height = height;
   extend(newGiraffe, giraffeMaker.giraffeMethods);
+
   return newGiraffe;
 };
 
@@ -21,15 +22,15 @@ giraffeMaker.giraffeMethods.greet = function(){
 };
 
 giraffeMaker.giraffeMethods.eat = function(){
-  if(this.height > 2){
-    if(this.hunger > 0){
+  if (this.height > 2){
+    if (this.hunger > 0){
       this.hunger -= this.height;
     } else {
       console.log(this.name + " is not hungry.");
     }
   } else {
     console.log(this.name + " too short to reach these trees.");
-  }
+  };
 };
 
 giraffeMaker.giraffeMethods.hunger = 10;
