@@ -1,7 +1,7 @@
 //function sharing - these are global functions which the maker function points to.
 
 var giraffeMaker = function(name, height){
-  var newGiraffe = {}
+  var newGiraffe = {};
   newGiraffe.name = name;
   newGiraffe.height = height;
   newGiraffe.hunger = 10;

@@ -1,5 +1,5 @@
 var giraffeMaker = function(name, height){
-  var newGiraffe = {}
+  var newGiraffe = {};
   newGiraffe.name = name;
   newGiraffe.height = height;
   newGiraffe.hunger = 10;
@@ -11,7 +11,7 @@ var giraffeMaker = function(name, height){
         console.log(newGiraffe.name + " is not hungry.");
       }
     } else {
-      console.log(newGiraffe.name + " is too short to reach the trees.")
+      console.log(newGiraffe.name + " is too short to reach the trees.");
     }
     }
   newGiraffe.greet = function() {

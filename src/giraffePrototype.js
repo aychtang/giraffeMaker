@@ -18,10 +18,10 @@ giraffeMaker.stuff.eat = function(){
     if(this.hunger > 0){
       this.hunger -= this.height;
     } else {
-      console.log(this.name + " is not hungry.")
+      console.log(this.name + " is not hungry.");
     }
   } else {
-    console.log(this.name + " too short to reach these trees.")
+    console.log(this.name + " too short to reach these trees.");
   }
 };
 
