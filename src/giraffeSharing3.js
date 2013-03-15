@@ -1,6 +1,6 @@
 //everything consolidated into a single global variable.
 
-var giraffeMaker = function(name, height){
+var giraffeMaker = function(name, height) {
   var newGiraffe = {};
   newGiraffe.name = name;
   newGiraffe.height = height;
@@ -13,13 +13,13 @@ var giraffeMaker = function(name, height){
 
 giraffeMaker.giraffeMethods = {};
 
-giraffeMaker.giraffeMethods.greet = function(){
+giraffeMaker.giraffeMethods.greet = function() {
   console.log('Hello, my name is ' + this.name + ', it is nice to meet you.');
 };
 
-giraffeMaker.giraffeMethods.eat = function(){
-  if (this.height > 2){
-    if (this.hunger > 0){
+giraffeMaker.giraffeMethods.eat = function() {
+  if (this.height > 2) {
+    if (this.hunger > 0) {
       this.hunger -= this.height;
     } else {
       console.log(this.name + " is not hungry.");

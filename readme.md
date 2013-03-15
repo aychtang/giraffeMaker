@@ -193,7 +193,7 @@ When asking about how the keyword 'this' works you will usually find one of two 
         
         shout = function(){
             console.log(newThing.ownValue);
-            };
+        };
             
     when you run thatOtherThing.shout(), this refers to thatOtherThing.
     

@@ -1,6 +1,6 @@
 //shared functions consolidated into a single object, reducing the amount of variables in the global scope to two.
 
-var giraffeMaker = function(name, height){
+var giraffeMaker = function(name, height) {
   var newGiraffe = {};
   newGiraffe.name = name;
   newGiraffe.height = height;
@@ -13,13 +13,13 @@ var giraffeMaker = function(name, height){
 
 var giraffeMethods = {};
 
-giraffeMethods.greet = function(){
+giraffeMethods.greet = function() {
   console.log('Hello, my name is ' + this.name + ', it is nice to meet you.');
 };
 
-giraffeMethods.eat = function(){
-  if (this.height > 2){
-    if (this.hunger > 0){
+giraffeMethods.eat = function() {
+  if (this.height > 2) {
+    if (this.hunger > 0) {
       this.hunger -= this.height;
     } else {
       console.log(this.name + " is not hungry.");
