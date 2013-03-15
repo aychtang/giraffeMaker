@@ -42,7 +42,7 @@ In the repo you will find many examples of code which will have the same functio
 ###giraffeMaker
 
 ```javascript
-var giraffeMaker = (name, height){
+var giraffeMaker = (name, height) {
     var giraffe = {};
     giraffe.name = name;
     giraffe.height = height;
@@ -57,7 +57,7 @@ This piece of code creates a new object and sets properties upon it, then return
 ### greet();
 
 ```javascript
-var greet = function(){
+var greet = function() {
     console.log('Hello, my name is ' + this.name + ', it is nice to meet you.');
 };
 ```
@@ -67,9 +67,9 @@ This is the greet function, it logs a string to console and wants to refer to th
 ### eat();
 
 ```javascript
-var eat = function(){
-    if(this.height > 2){
-        if(this.hunger > 0){
+var eat = function() {
+    if(this.height > 2) {
+        if(this.hunger > 0) {
           this.hunger -= this.height;
         } else {
           console.log(this.name + " is not hungry.");
@@ -91,10 +91,10 @@ The Journey:
 The first step will be creating some sort of maker function. 
 
 ```javascript
-var theMaker = function(value){
+var theMaker = function(value) {
     var theThingToBeMade = {};
     theThingToBeMade.ownValue = value;
-    theThingToBeMade.shout = function(){
+    theThingToBeMade.shout = function() {
         console.log("I have my own Value! Let it be known as " + theThingToBeMade.ownValue + "!");
     };
 
@@ -128,7 +128,7 @@ You can think about a Class as a mechanism which allows you to create objects wh
 The code in the previous maker function creates a new method .shout() for each thing that it creates, attaching this new function to each instance. What are we really trying to do here? Do we want each thing to have a new method of its own? Wouldn't it be cool if they could just share one function which they can inherit from being a thing?
 
 ```javascript
-var theMaker = function(value){ 
+var theMaker = function(value) { 
     var theThingToBeMade = {};
     theThingToBeMade.ownValue = value;
     theThingToBeMade.shout = shout;
@@ -136,7 +136,7 @@ var theMaker = function(value){
     return theThingToBeMade;
 };
 
-var shout = function(){
+var shout = function() {
     console.log("I have my own Value! Let it be known as " + this.ownValue + "!");
 };
 ```
@@ -147,7 +147,7 @@ In this snippet of code, we take the shout functionality out of the maker functi
 If we move the functionality outside of the maker function, we lose our previous way of referring to the created object, which was something like this.
 
 ```javascript
-var maker = function(value){
+var maker = function(value) {
     theThingToBeMade = {};
     theThingToBeMade.ownValue = value;
     //This assigns a property ownValue to the object. We can refer to it within the two brackets that wrap the maker             function.
@@ -185,14 +185,15 @@ When asking about how the keyword 'this' works you will usually find one of two 
 1. It refers to what is to the left of the dot at calltime.
 2. It's magical.
 
-    shout = function(){
+```javascript
+    shout = function() {
         console.log(this.ownValue);
     };
     
     when you run newThing.shout(), this refers to newThing, as it is to the left of the dot at calltime.
         - JavaScript would interpret this instance of the function call like:
         
-        shout = function(){
+        shout = function() {
             console.log(newThing.ownValue);
         };
             
@@ -200,14 +201,15 @@ When asking about how the keyword 'this' works you will usually find one of two 
     
     thatOtherThing.shout(); // "I might not be the thing you wanted."
     newThing.shout(); // "I am a thing!"
+```
     
 Using the keyword this allows us to refer to the particular instance of the class that we intend to within the shared function. 
 
 ###Sharing functions using extend() - step 2:
 
 ```javascript
-var extend = function(copyTo, copyFrom){
-    for (var property in copyFrom){
+var extend = function(copyTo, copyFrom) {
+    for (var property in copyFrom) {
         copyTo[property] = copyFrom[property];
     }
 };
@@ -219,7 +221,7 @@ The extend function copies every property from one object onto another. This wil
 A prototype allows you to share methods and properties among class members. How this works more precisely is that once you set up a prototype chain, or delegate to a prototype. Any failed lookup on an object will be delegated to its prototype which will be checked for what was looked up on the object. The idea of using a prototype is to have any shared properties or methods on the prototype, allowing all class members to use them. The only property that should stay in the maker function would be one that changes or has a specific value for each instance.
 
 ```javascript
-var maker = function(value){
+var maker = function(value) {
     var thingToBeMade = Object.create(maker.stuffAllThingsShouldHave);
     thingToBeMade.ownValue = value;
 
@@ -238,7 +240,7 @@ Object.create not only creates the new object for us, but also sets up delegatio
 ```javascript
 
     maker.stuffAllThingsShouldHave = {
-        shout: function(){console.log(this.ownValue);}
+        shout: function() {console.log(this.ownValue);}
     };
 ```
 
@@ -269,11 +271,11 @@ The function following 'new', is run in "constructor mode", these rules apply:
 You would use 'new' when creating another instance of the class. When creating objects using Pseudo-Classical we need to use a maker function which has more specific rules.
 
 ```javascript
-    var Thing = function(value){
+    var Thing = function(value) {
         this.ownValue = value;
     };
     
-    Thing.prototype.shout = function(){console.log(this.ownValue);};
+    Thing.prototype.shout = function() {console.log(this.ownValue);};
     
     var newThing = new Thing(1);
     var otherThing = new Thing(100);
@@ -284,7 +286,7 @@ The maker function we use in Pseudo-Classical does not need to create, return th
 Here is how the interpreter sees the same function as it is run in constructor mode:
 
 ```javascript
-    var Thing = function(value){
+    var Thing = function(value) {
         var newThing = Object.create(Thing.prototype);
         this = newThing;
         this.ownValue = value;
@@ -300,7 +302,7 @@ Functions are only run in constructor mode when you invoke the keyword new. It i
 ```javascript
     var protoThing = Thing(10);
     
-    protoThing = function(10){
+    protoThing = function(10) {
         this.ownValue = 10;
     };
 ```
