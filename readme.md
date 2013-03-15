@@ -59,7 +59,7 @@ This piece of code creates a new object and sets properties upon it, then return
 ```javascript
 var greet = function(){
     console.log('Hello, my name is ' + this.name + ', it is nice to meet you.');
-}
+};
 ```
 
 This is the greet function, it logs a string to console and wants to refer to the name of the giraffe that it has been called in context to.
@@ -155,6 +155,7 @@ var maker = function(value){
 
     return theThingToBeMade;
 };
+
     var newThing = maker('I am a thing!');
     var thatOtherThing = maker('I might not be the thing you wanted.');
     var shout = function(){console.log(theThingToBeMade.ownValue)};
@@ -270,7 +271,7 @@ You would use 'new' when creating another instance of the class. When creating o
 ```javascript
     var Thing = function(value){
         this.ownValue = value;
-    }
+    };
     
     Thing.prototype.shout = function(){console.log(this.ownValue);};
     
@@ -289,7 +290,7 @@ Here is how the interpreter sees the same function as it is run in constructor m
         this.ownValue = value;
 
         return this;
-    }
+    };
     
     var newThing = new Thing(10);
 ```
@@ -301,7 +302,7 @@ Functions are only run in constructor mode when you invoke the keyword new. It i
     
     protoThing = function(10){
         this.ownValue = 10;
-    }
+    };
 ```
 
 This type of constructor just makes *no sense* when you run it without using the keyword new. The maker function which previously created an object, put properties onto it and returned it now does none of those things. This is one of the dangers of using a Pseudo Classical constructor, and I always name these functions as the classname with a capital letter to avoid confusion.
