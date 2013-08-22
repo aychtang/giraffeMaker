@@ -17,7 +17,7 @@ The Story:
 >- my height should be three meters,
 >- I start with a hunger value of 10,
 >- I know how to eat(),
->- I know how to greet().
+>- I know how to say('greet').
 
 The giraffeMaker is a function that must allow the user to create a new giraffe Object, taking two arguments, the name and height of the giraffe to be created.
 
@@ -30,7 +30,7 @@ Each giraffe should have three properties:
 Giraffes have a special set of methods which should only be accessible by them:
 
 - Eat() - Reduces hunger depending on how tall the giraffe is. Prints that the giraffe is no longer hungry if the hunger value hits zero. Note that the trees in this plain sit at 2 meters, so the giraffe has to have a height of at least 2 meters to reach the trees.
-- Greet() - The giraffe introduces him/herself. 
+- Say('greet') - The giraffe introduces him/herself. 
 
 This repo contains code which presents a working representation of this Giraffe class using various methods of constructing Class Objects in JavaScript.
 
