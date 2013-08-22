@@ -3,24 +3,43 @@
 var Giraffe = function(name, height) {
   this.name = name;
   this.height = height;
+  this.hunger = 10;
 };
 
-Giraffe.prototype.greet = function() {
-  console.log('Hello, my name is ' + this.name + ', it is nice to meet you.');
+giraffeMaker.prototype.isTallEnough = function(treeHeight) {
+    return this.height > treeHeight;
+  };
+
+giraffeMaker.prototype.isHungry = function() {
+  return this.hunger > 0;
 };
 
-Giraffe.prototype.eat = function() {
-  if (this.height > 2) {
-    if (this.hunger > 0) {
-      this.hunger -= this.height;
-    } else {
-      console.log(this.name + " is not hungry.");
-    }
+giraffeMaker.prototype.say = function(option) {
+  var sentences = {
+    'greet': 'Hello, my name is ' + this.name + ', it is nice to meet you.',
+    'notHungry': this.name + ' is not hungry.',
+    'notTallEnough': this.name + ' is too short to reach the trees.',
+    'ate': 'That was delicious!'
+  };
+
+  return console.log(sentences[option]);
+};
+
+giraffeMaker.prototype.eat = function() {
+  if (this.isHungry()) {
+    this.hunger -= this.height;
+    this.say('ate');
   } else {
-    console.log(this.name + " too short to reach these trees.");
+    this.say('notHungry');
   }
 };
 
-Giraffe.prototype.hunger = 10;
+giraffeMaker.prototype.browse = function() {
+  if (this.isTallEnough(2)) {
+    this.eat();
+  } else {
+    this.say('notTallEnough')
+  }
+};
 
 var Stanley = new Giraffe('stanley', 5);
