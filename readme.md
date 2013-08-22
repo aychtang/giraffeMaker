@@ -183,18 +183,19 @@ In this snippet of code, we take the shout functionality out of the maker functi
 If we move the functionality outside of the maker function, we lose our previous way of referring to the created object, which was something like this.
 
 ```javascript
-var maker = function(value) {
-    theThingToBeMade = {};
-    theThingToBeMade.ownValue = value;
-    //This assigns a property ownValue to the object. We can refer to it within the two brackets that wrap the maker             function.
-    theThingToBeMade.shout = shout;
+    var maker = function(value) {
+        theThingToBeMade = {};
+        theThingToBeMade.ownValue = value;
+        //This assigns a property ownValue to the object. We can refer to it within the two brackets that wrap the maker             function.
+        theThingToBeMade.shout = function(){
+            console.log(theThingToBeMade.ownValue)
+        };
 
-    return theThingToBeMade;
-};
+        return theThingToBeMade;
+    };
 
     var newThing = maker('I am a thing!');
     var thatOtherThing = maker('I might not be the thing you wanted.');
-    var shout = function(){console.log(theThingToBeMade.ownValue)};
 
     newThing.ownValue; // evaluates to "I am a thing!"
     newThing.shout(); // "I might not be the thing you wanted."
