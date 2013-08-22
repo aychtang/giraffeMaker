@@ -95,7 +95,7 @@ This is the say function, a helper for the giraffes dialogue. Rather than litter
 ```javascript
 var eat = function() {
     if (this.isHungry()) {
-      this.hunger -= height;
+      this.hunger -= this.height;
       this.say('ate');
     } else {
       this.say('notHungry');
