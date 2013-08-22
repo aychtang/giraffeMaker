@@ -54,35 +54,71 @@ var giraffeMaker = (name, height) {
     
 This piece of code creates a new object and sets properties upon it, then returning the created object. The communal methods have not yet been shared.
 
-### greet();
+###isTallEnough();
 
 ```javascript
-var greet = function() {
-    console.log('Hello, my name is ' + this.name + ', it is nice to meet you.');
-};
+    isTallEnough = function(treeHeight) {
+        return this.height > treeHeight;
+     };
+```
+This helper function observes the giraffes height and compares it to the height of the trees in the world. It returns the boolean value from the check.
+
+###isHungry();
+
+```javascript
+    isTallEnough = function(treeHeight) {
+        return this.hunger > 0;
+     };
+```
+This helper function observes whether the giraffes hunger is greater than 0 and returns the boolean value.
+
+
+### say();
+
+```javascript
+var say = function(option) {
+    var sentences = {
+      'greet': 'Hello, my name is ' + newGiraffe.name + ', it is nice to meet you.',
+      'notHungry': newGiraffe.name + ' is not hungry.',
+      'notTallEnough': newGiraffe.name + ' is too short to reach the trees.',
+      'ate': 'That was delicious!'
+    };
+
+    return console.log(sentences[option]);
+ };
 ```
 
-This is the greet function, it logs a string to console and wants to refer to the name of the giraffe that it has been called in context to.
+This is the say function, a helper for the giraffes dialogue. Rather than litter the code with console.logs, we map all possible strings to an option key. The function returns the string which is mapped to the option passed at calltime.
     
 ### eat();
 
 ```javascript
 var eat = function() {
-    if(this.height > 2) {
-        if(this.hunger > 0) {
-          this.hunger -= this.height;
-        } else {
-          console.log(this.name + " is not hungry.");
-        }
-  } else {
-    console.log(this.name + " too short to reach these trees.");
-  }
+    if (this.isHungry()) {
+      this.hunger -= height;
+      this.say('ate');
+    } else {
+      this.say('notHungry');
+    }
 };
 ```
 
 This is the eat function, first it checks a couple of properties on the giraffe that it has been called in context to. If the height of this giraffe is less than 2 it logs that the giraffe is too short to reach the trees. Otherwise if the giraffe is hungry then it reduces the hunger of the giraffe by how tall the giraffe is (taller giraffes have a better ability to browse food). 
-    
-    
+
+Note that this function uses the previously defined helper function say() and isHungry(), to check whether the giraffe is hungry and log different choices in dialogue with a clean interface.
+
+###browse();
+```javascript
+var browse = function() {
+    if (this.isTallEnough(2)) {
+      this.eat();
+    } else {
+      this.say('notTallEnough')
+    }
+  };
+```
+
+This function simulates the giraffe browsing the trees. If the giraffe is tall enough it will eat, otherwise it will say it isn't tall enough. Again, note the use of previously defined helper functions allowing this piece of the code to be more readable.
 
 The Journey:
 ----------
