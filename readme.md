@@ -66,7 +66,7 @@ This helper function observes the giraffes height and compares it to the height 
 ###isHungry();
 
 ```javascript
-    isTallEnough = function(treeHeight) {
+    isHungry = function() {
         return this.hunger > 0;
      };
 ```
