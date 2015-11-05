@@ -42,7 +42,7 @@ In the repo you will find many examples of code which will have the same functio
 ###giraffeMaker
 
 ```javascript
-var giraffeMaker = (name, height) {
+var giraffeMaker = function(name, height) {
     var giraffe = {};
     giraffe.name = name;
     giraffe.height = height;
