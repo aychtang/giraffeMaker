@@ -1,4 +1,20 @@
 //everything consolidated into a single global variable.
+
+var giraffeMaker = function(name, height) {
+  var newGiraffe = {};
+  newGiraffe.name = name;
+  newGiraffe.height = height;
+  newGiraffe.hunger = 10;
+
+  newGiraffe.eat = giraffeMaker.giraffeMethods.eat;
+  newGiraffe.browse = giraffeMaker.giraffeMethods.browse;
+  newGiraffe.isTallEnough = giraffeMaker.giraffeMethods.isTallEnough;
+  newGiraffe.isHungry = giraffeMaker.giraffeMethods.isHungry;
+  newGiraffe.say = giraffeMaker.giraffeMethods.say;
+
+  return newGiraffe;
+};
+
 giraffeMaker.giraffeMethods = {};
 
 giraffeMaker.giraffeMethods.isTallEnough = function(treeHeight) {
@@ -35,19 +51,4 @@ giraffeMaker.giraffeMethods.browse = function() {
   } else {
     this.say('notTallEnough')
   }
-};
-
-var giraffeMaker = function(name, height) {
-  var newGiraffe = {};
-  newGiraffe.name = name;
-  newGiraffe.height = height;
-  newGiraffe.hunger = 10;
-
-  newGiraffe.eat = giraffeMaker.giraffeMethods.eat;
-  newGiraffe.browse = giraffeMaker.giraffeMethods.browse;
-  newGiraffe.isTallEnough = giraffeMaker.giraffeMethods.isTallEnough;
-  newGiraffe.isHungry = giraffeMaker.giraffeMethods.isHungry;
-  newGiraffe.say = giraffeMaker.giraffeMethods.say;
-
-  return newGiraffe;
 };
