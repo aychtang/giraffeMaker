@@ -227,15 +227,13 @@ When asking about how the keyword 'this' works you will usually find one of two 
         console.log(this.ownValue);
     };
     
-    when you run newThing.shout(), this refers to newThing, as it is to the left of the dot at calltime.
-        - JavaScript would interpret this instance of the function call like:
-        
+        // when you run newThing.shout(), this refers to newThing, as it is to the left of the dot at calltime.
+        // JavaScript would interpret this instance of the function call like:
         shout = function() {
             console.log(newThing.ownValue);
         };
             
-    when you run thatOtherThing.shout(), this refers to thatOtherThing.
-    
+    // when you run thatOtherThing.shout(), this refers to thatOtherThing.
     thatOtherThing.shout(); // "I might not be the thing you wanted."
     newThing.shout(); // "I am a thing!"
 ```
